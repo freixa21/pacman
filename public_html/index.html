@@ -7,9 +7,143 @@
         <script type="text/javascript" src="pacman.js"></script>
     </head>
     <body>
-        <noscript>
-        <p>Benvinguts al joc de pacman</p>
-        </noscript>
-    </body>
 
+        <div> 
+            <table id="taula" cellpadding=4 style="width:20%;text-align:center;vertical-align:middle;border:2px solid black">
+
+                <tr>
+                    <th> 0</th>
+                    <th> 1</th>
+                    <th> 2</th>
+                    <th> 3</th>
+                    <th> 4</th>
+                    <th> 5</th>
+                    <th> 6</th>
+                    <th> 7</th>
+                    <th> 8</th>
+                    <th> 9</th>
+                    <th>10</th>
+                    <th>11</th>
+                    <th>12</th>
+                    <th>13</th>
+                    <th>14</th>
+                    <th>15</th>
+                    <th>16</th>
+                    <th>17</th>
+                    <th>18</th>
+                    <th>19</th>
+                    <th>20</th>
+                    <th>21</th>
+                    <th>22</th>
+                    <th>23</th>
+                    <th>24</th>
+                    <th>25</th>
+                    <th>26</th>
+                    <th>27</th>
+                    <th>28</th>
+                    <th>29</th>
+                </tr>
+            </table>
+        </div>
+        <script>
+
+            var base = [];
+            var fantasma1 = [];
+            var fantasma2 = [];
+            var fantasma3 = [];
+            var jugador = [];
+
+
+            base[0] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+            base[1] = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1];
+            base[2] = [1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1];
+            base[3] = [1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1];
+            base[4] = [1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1];
+            base[5] = [1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1];
+            base[6] = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1];
+            base[7] = [1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1];
+            base[8] = [1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1];
+            base[9] = [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1];
+            base[10] = [1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1];
+            base[11] = [1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1];
+            base[12] = [1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1];
+            base[13] = [1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1];
+            base[14] = [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1];
+            base[15] = [1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1];
+            base[16] = [1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1];
+            base[17] = [1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1];
+            base[18] = [1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1];
+            base[19] = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1];
+            base[20] = [1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1];
+            base[21] = [1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1];
+            base[22] = [1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1];
+            base[23] = [1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1];
+            base[24] = [1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1];
+            base[25] = [1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1];
+            base[26] = [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1];
+            base[27] = [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1];
+            base[28] = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1];
+            base[29] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+
+            /*Creem un enter aleatori*/
+            function EnterAleatori(maxim, minim) {
+                return Math.floor(Math.random() * (maxim - minim)) + (minim);
+            }
+
+
+            /*Coloquem els fantasmes en posicions aleatories*/
+            var files = [];
+            var columnes = [];
+
+            function ColocarFantasmes() {
+                comptador = 0;
+                do {
+                    var fila = EnterAleatori(0, 29);
+                    var columna = EnterAleatori(0, 29);
+                    var PosicioAleatoria = base[fila][columna];
+                    if (PosicioAleatoria === 0) {
+
+                        base[fila][columna] = "F" + comptador;
+
+                        files.push(fila);
+                        columnes.push(columna);
+                        comptador++;
+                    }
+                } while (comptador < 3)
+            }
+
+            /*Coloquem els jugadors en posicions aleatories*/
+            function generarJugador() {
+                jugador = 0;
+                do {
+                    var fila = EnterAleatori(0, 29);
+                    var columna = EnterAleatori(0, 29);
+                    var random_position = base[fila][columna];
+                    if (random_position === 0) {
+                        jugador++;
+                        base[fila][columna] = "JG";
+                    }
+                } while (jugador < 1)
+
+            }
+
+            /*Cridem les funcions per colocar tant jugadors com fantasmes*/
+            ColocarFantasmes();
+            generarJugador();
+
+            /*CODI PER IMPRIMIR LA TAULA*/
+            taula = document.getElementById("taula");
+            for (var i = 0; i < base.length; i++)
+            {
+                var newRow = taula.insertRow(taula.length);
+                for (var j = 0; j < base[i].length; j++)
+                {
+                    var cell = newRow.insertCell(j);
+                    cell.innerHTML = base[i][j];
+                }
+            }
+            /*Final codi impresió taula*/
+        </script>
+    </body>
 </html>
+
